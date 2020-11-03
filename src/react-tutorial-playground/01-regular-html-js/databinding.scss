@@ -1,0 +1,48 @@
+.headline{
+    background: #ccc;
+}
+
+.mouse-div{
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    outline: 5px solid black;
+    padding: 10px;
+}
+
+.blue{
+    background: blue;
+}
+
+.yellow{
+    background: yellow;
+}
+
+.red{
+    background: red;
+}
+
+.green{
+    background: green;
+}
+
+.div-show{
+    width: 100px;
+    height: 100px;
+    background: purple;
+    color: white;
+    margin: 20px auto;
+}
+
+.square{
+    width: 75px;
+    height: 75px;
+    border: 10px solid orange;
+}
+
+.circle {
+    width: 75px;
+    height: 75px;
+    border: 10px solid purple;
+    border-radius: 50%;
+}
