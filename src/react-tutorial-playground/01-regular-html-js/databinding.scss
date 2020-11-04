@@ -55,3 +55,39 @@
     color: red;
     font-size: 0.75rem;
 }
+
+.display-inline-block{
+    display: inline-block;
+}
+
+.board{
+    width: 80vh;
+    height: 80vh;
+    outline: 5px solid black;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+%square{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square-white{
+    @extend %square;
+    background: white;
+}
+
+.square-black{
+    @extend %square;
+    background: black;
+}
+
+.piece{
+    background: blue;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+}
