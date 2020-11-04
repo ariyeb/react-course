@@ -4,6 +4,8 @@ import "./styles/styles.scss";
 import "./react-tutorial-playground/01-regular-html-js/databinding.scss";
 // import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import validator from "validator";
+import { nanoid } from "nanoid";
 
 // ReactDOM.render(
 // 	<React.StrictMode>
@@ -21,6 +23,10 @@ let divMouseClass = "mouse-div";
 let isButtonDisabled = false;
 let isDivShowExist = true;
 let isCircleDiv = true;
+let inputMailClass = "";
+let isMailInvalid = false;
+let messages = [];
+let isButtonMessageDisabled = true;
 
 const onInputInputChangeTitle = (event) => {
 	const newTitle = event.target.value.trim();
@@ -66,9 +72,41 @@ const onChangeSelect = (event) => {
 	renderUI();
 };
 
+const onInputInputEmail = (event) => {
+	const email = event.target.value.trim();
+	isMailInvalid = email.length > 0 && !validator.isEmail(email);
+	inputMailClass = isMailInvalid ? "input-invalid" : "";
+	renderUI();
+};
+
+const onSubmitFormMessages = (event) => {
+	event.preventDefault();
+	const message = event.target.children[0].value.trim();
+	const id = nanoid();
+	messages.push({ message, id });
+	console.log(id);
+	event.target.children[0].value = "";
+	isButtonMessageDisabled = true;
+	renderUI();
+};
+
+const oninputinputMessage = (event) => {
+	const message = event.target.value.trim();
+	if (message.length === 0) {
+		isButtonMessageDisabled = true;
+		renderUI();
+	} else if (isButtonMessageDisabled === true) {
+		isButtonMessageDisabled = false;
+		renderUI();
+	}
+};
+
 // צרו ריבוע שבתוכו כתוב את מיקום העכבר הפנימי
 // הריבוע מחולק לארבעה ריבועים דימיוניים
 // שנו את צבע הריבוע לפי מיקום העכבר בהתאם לריבוע הפנימי
+
+// צרו אינפוט של אימייל - כאשר מקלידים והערך איננו אימייל תקין
+// מופיעה מסגרת אדומה מסביב לאינפוט ומופיעה אזהרה שהאימייל איננו תקין
 
 function renderUI() {
 	const jsx = (
@@ -94,6 +132,24 @@ function renderUI() {
 				<option value="square">Square</option>
 			</select>
 			{isCircleDiv ? <div className="circle"></div> : <div className="square"></div>}
+			<input placeholder="email" className={inputMailClass} onInput={onInputInputEmail} />
+			{isMailInvalid && <div className="div-warning">Email invalid</div>}
+			{[<div key={"1"}>1</div>, <div key={"2"}>2</div>, <div key={"3"}>3</div>]}
+			<form onSubmit={onSubmitFormMessages}>
+				<input placeholder="add message" onInput={oninputinputMessage} />
+				<button type="submit" disabled={isButtonMessageDisabled}>
+					Submit
+				</button>
+			</form>
+			{messages.length === 0 ? (
+				<div>No messages</div>
+			) : (
+				messages.map((message, i) => (
+					<div className={i % 2 === 0 ? "blue" : "yellow"} key={message.id}>
+						{message.message}
+					</div>
+				))
+			)}
 		</div>
 	);
 	ReactDOM.render(jsx, document.getElementById("root"));
