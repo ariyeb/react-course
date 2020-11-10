@@ -1,11 +1,13 @@
 import React from "react";
-import LoginForm from "./LoginForm";
+// import LoginForm from "./LoginForm";
+import SubscribeForm from "./SubscribeForm";
 
 const LoginPage = () => {
 	return (
 		<div className="login-page">
 			<div className="login-page__form">
-				<LoginForm />
+				{/* <LoginForm /> */}
+				<SubscribeForm />
 			</div>
 		</div>
 	);
