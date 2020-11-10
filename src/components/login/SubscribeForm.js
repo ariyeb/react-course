@@ -140,9 +140,9 @@ const SubscribeForm = () => {
                 {invalidMessages[1] !== "" && <div className="invalid-message">{invalidMessages[1]}</div>}
                 <input placeholder="Email" className={inputClasses[2]} onBlur={onBlurEmail} />
                 {invalidMessages[2] !== "" && <div className="invalid-message">{invalidMessages[2]}</div>}
-                <input type="passsword" placeholder="Password" className={inputClasses[3]} onBlur={onBlurPassword} />
+                <input type="password" placeholder="Password" className={inputClasses[3]} onBlur={onBlurPassword} />
                 {invalidMessages[3] !== "" && <div className="invalid-message">{invalidMessages[3]}</div>}
-                <input type="passsword" placeholder="Repeat on password" className={inputClasses[4]} onBlur={onBlurPasswordRepeated} />
+                <input type="password" placeholder="Repeat on password" className={inputClasses[4]} onBlur={onBlurPasswordRepeated} />
                 {invalidMessages[4] !== "" && <div className="invalid-message">{invalidMessages[4]}</div>}
                 <button type="submit" disabled={isFormInvalid()}>Submit</button>
             </form>
