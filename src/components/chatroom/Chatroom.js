@@ -7,7 +7,7 @@ const Chatroom = () => {
     const roomName = "Bananas";
     const myUser = {
         username: "ReactIsTheBest",
-        id: nanoid()
+        id: "11"
     };
     const users = [
         {
@@ -40,10 +40,23 @@ const Chatroom = () => {
         }
     ]);
 
+    const addMessage = (messageContent) => {
+        setMessages(messages.concat({
+            message: messageContent,
+            id: nanoid(),
+            user: myUser
+        }));
+    };
+
     return (
         <div className="chatroom">
             <ChatroomUsers users={users} />
-            <ChatroomMain roomName={roomName} />
+            <ChatroomMain
+                roomName={roomName}
+                messages={messages}
+                userId={myUser.id}
+                addMessage={addMessage}
+            />
         </div>
     );
 };

@@ -1,0 +1,21 @@
+.message {
+  margin: 1rem;
+  background: white;
+  border: 2px solid $myBlue;
+  border-radius: 5px;
+  width: 80%;
+}
+
+.username {
+  font-weight: 700;
+  margin: 1rem;
+}
+
+.content {
+  margin: 1rem;
+}
+
+.my-message {
+  @extend .message;
+  background: $myYellow;
+}

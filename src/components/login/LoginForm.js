@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
 	const [email, setEmail] = useState("");
 	// const emailState = useState("");
 	const [password, setPassword] = useState("");
@@ -34,6 +34,10 @@ const LoginForm = () => {
 		console.log("login form:", email, password);
 	};
 
+	const onClickSubscribe = () => {
+		props.setIsLoginMode(false);
+	};
+
 	return (
 		<div className="login-form">
 			<h3>Login</h3>
@@ -42,7 +46,10 @@ const LoginForm = () => {
 				{!isEmailinputValid && <div className="invalid-message">You must enter your email.</div>}
 				<input type="password" placeholder="Password" onBlur={onBlurPasswordInput} />
 				{!isPasswordInputValid && <div className="invalid-message">You must enter your password.</div>}
-				<button type="submit" disabled={isFormInavlid()}>Submit</button>
+				<div className="login-form__nav">
+					<button type="submit" disabled={isFormInavlid()}>Submit</button>
+					<div onClick={onClickSubscribe}>Subscribe</div>
+				</div>
 			</form>
 		</div>
 	);

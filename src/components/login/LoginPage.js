@@ -1,13 +1,16 @@
-import React from "react";
-// import LoginForm from "./LoginForm";
+import React, { useState } from "react";
+import LoginForm from "./LoginForm";
 import SubscribeForm from "./SubscribeForm";
 
 const LoginPage = () => {
+	const [isLoginMode, setIsLoginMode] = useState(true);
+
 	return (
 		<div className="login-page">
 			<div className="login-page__form">
-				{/* <LoginForm /> */}
-				<SubscribeForm />
+				{isLoginMode ?
+					<LoginForm setIsLoginMode={setIsLoginMode} /> :
+					<SubscribeForm setIsLoginMode={setIsLoginMode} />}
 			</div>
 		</div>
 	);

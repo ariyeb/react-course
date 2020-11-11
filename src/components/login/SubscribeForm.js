@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import validator from 'validator';
 
-const SubscribeForm = () => {
+const SubscribeForm = (props) => {
     const [inputClasses, setInputClasses] = useState(["", "", "", "", ""]);
     const [invalidMessages, setInvalidMessages] = useState(["", "", "", "", ""]);
     const [validInputs, setValidInputs] = useState([false, false, false, false, false]);
@@ -130,6 +130,10 @@ const SubscribeForm = () => {
         });
     };
 
+    const onClickLogin = () => {
+        props.setIsLoginMode(true);
+    };
+
     return (
         <div className="login-form">
             <h3>Subscribe</h3>
@@ -144,7 +148,11 @@ const SubscribeForm = () => {
                 {invalidMessages[3] !== "" && <div className="invalid-message">{invalidMessages[3]}</div>}
                 <input type="password" placeholder="Repeat on password" className={inputClasses[4]} onBlur={onBlurPasswordRepeated} />
                 {invalidMessages[4] !== "" && <div className="invalid-message">{invalidMessages[4]}</div>}
-                <button type="submit" disabled={isFormInvalid()}>Submit</button>
+
+                <div className="login-form__nav">
+                    <button type="submit" disabled={isFormInvalid()}>Submit</button>
+                    <div onClick={onClickLogin}>Login</div>
+                </div>
             </form>
         </div>
     );
