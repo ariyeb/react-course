@@ -48,6 +48,12 @@ const Chatroom = () => {
         }));
     };
 
+    const deleteMessage = (index) => {
+        const newMessages = [...messages];
+        newMessages.splice(index, 1);
+        setMessages(newMessages);
+    };
+
     return (
         <div className="chatroom">
             <ChatroomUsers users={users} />
@@ -56,6 +62,7 @@ const Chatroom = () => {
                 messages={messages}
                 userId={myUser.id}
                 addMessage={addMessage}
+                deleteMessage={deleteMessage}
             />
         </div>
     );

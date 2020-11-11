@@ -4,6 +4,7 @@
   border: 2px solid $myBlue;
   border-radius: 5px;
   width: 80%;
+  position: relative;
 }
 
 .username {
@@ -18,4 +19,16 @@
 .my-message {
   @extend .message;
   background: $myYellow;
+}
+
+.delete-message {
+  font-weight: 700;
+  position: absolute;
+  top: 0;
+  right: 0.5rem;
+
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
 }
