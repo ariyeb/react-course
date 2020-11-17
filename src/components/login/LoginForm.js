@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const LoginForm = (props) => {
 	const [email, setEmail] = useState("");
@@ -6,6 +7,8 @@ const LoginForm = (props) => {
 	const [password, setPassword] = useState("");
 	const [isEmailinputValid, setIsEmailInputValid] = useState(true);
 	const [isPasswordInputValid, setIsPasswordInputValid] = useState(true);
+
+	const history = useHistory();
 
 	const isFormInavlid = () => {
 		return email === "" || password === "";
@@ -32,6 +35,7 @@ const LoginForm = (props) => {
 	const onSubmitform = (event) => {
 		event.preventDefault();
 		console.log("login form:", email, password);
+		history.push("/rooms");
 	};
 
 	const onClickSubscribe = () => {
@@ -41,14 +45,14 @@ const LoginForm = (props) => {
 	return (
 		<div className="login-form">
 			<h3>Login</h3>
-			<form onSubmit={onSubmitform}>
-				<input placeholder="Email" onBlur={onBlurEmailInput} />
-				{!isEmailinputValid && <div className="invalid-message">You must enter your email.</div>}
-				<input type="password" placeholder="Password" onBlur={onBlurPasswordInput} />
-				{!isPasswordInputValid && <div className="invalid-message">You must enter your password.</div>}
+			<form onSubmit={ onSubmitform }>
+				<input placeholder="Email" onBlur={ onBlurEmailInput } />
+				{ !isEmailinputValid && <div className="invalid-message">You must enter your email.</div> }
+				<input type="password" placeholder="Password" onBlur={ onBlurPasswordInput } />
+				{ !isPasswordInputValid && <div className="invalid-message">You must enter your password.</div> }
 				<div className="login-form__nav">
-					<button type="submit" disabled={isFormInavlid()}>Submit</button>
-					<div onClick={onClickSubscribe}>Subscribe</div>
+					<button type="submit" disabled={ isFormInavlid() }>Submit</button>
+					<div onClick={ onClickSubscribe }>Subscribe</div>
 				</div>
 			</form>
 		</div>

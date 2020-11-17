@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import ChatroomMain from './ChatroomMain';
 import ChatroomUsers from './ChatroomUsers';
 
-const Chatroom = () => {
-    const roomName = "Bananas";
+const Chatroom = (props) => {
+    const roomName = props.match.params.name;
     const myUser = {
         username: "ReactIsTheBest",
         id: "11"
@@ -56,13 +56,13 @@ const Chatroom = () => {
 
     return (
         <div className="chatroom">
-            <ChatroomUsers users={users} />
+            <ChatroomUsers users={ users } />
             <ChatroomMain
-                roomName={roomName}
-                messages={messages}
-                userId={myUser.id}
-                addMessage={addMessage}
-                deleteMessage={deleteMessage}
+                roomName={ roomName }
+                messages={ messages }
+                userId={ myUser.id }
+                addMessage={ addMessage }
+                deleteMessage={ deleteMessage }
             />
         </div>
     );

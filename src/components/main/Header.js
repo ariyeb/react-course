@@ -1,15 +1,16 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
 	return (
 		<div className="header">
 			<div className="header__nav">
-				<a className="home-nav" href="/">
+				<NavLink className="home-nav" to="/home" activeClassName="header__active-link">
 					Home
-				</a>
+				</NavLink>
 				<div>
-					<a href="/">Rooms</a>
-					<a href="/">Login</a>
+					<NavLink to="/rooms" activeClassName="header__active-link">Rooms</NavLink>
+					<NavLink to="/login" activeClassName="header__active-link">Login</NavLink>
 				</div>
 			</div>
 		</div>

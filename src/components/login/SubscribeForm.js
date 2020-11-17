@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import validator from 'validator';
 
 const SubscribeForm = (props) => {
@@ -9,6 +10,8 @@ const SubscribeForm = (props) => {
     const [age, setage] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+
+    const history = useHistory();
 
     const isFormInvalid = () => {
         return validInputs.includes(false);
@@ -128,6 +131,7 @@ const SubscribeForm = (props) => {
             email,
             password
         });
+        history.push("/rooms");
     };
 
     const onClickLogin = () => {
@@ -137,21 +141,21 @@ const SubscribeForm = (props) => {
     return (
         <div className="login-form">
             <h3>Subscribe</h3>
-            <form onSubmit={onSubmitform}>
-                <input placeholder="Username" className={inputClasses[0]} onBlur={onBlurUsername} />
-                {invalidMessages[0] !== "" && <div className="invalid-message">{invalidMessages[0]}</div>}
-                <input placeholder="Age" type="number" className={inputClasses[1]} onBlur={onBlurAge} />
-                {invalidMessages[1] !== "" && <div className="invalid-message">{invalidMessages[1]}</div>}
-                <input placeholder="Email" className={inputClasses[2]} onBlur={onBlurEmail} />
-                {invalidMessages[2] !== "" && <div className="invalid-message">{invalidMessages[2]}</div>}
-                <input type="password" placeholder="Password" className={inputClasses[3]} onBlur={onBlurPassword} />
-                {invalidMessages[3] !== "" && <div className="invalid-message">{invalidMessages[3]}</div>}
-                <input type="password" placeholder="Repeat on password" className={inputClasses[4]} onBlur={onBlurPasswordRepeated} />
-                {invalidMessages[4] !== "" && <div className="invalid-message">{invalidMessages[4]}</div>}
+            <form onSubmit={ onSubmitform }>
+                <input placeholder="Username" className={ inputClasses[0] } onBlur={ onBlurUsername } />
+                { invalidMessages[0] !== "" && <div className="invalid-message">{ invalidMessages[0] }</div> }
+                <input placeholder="Age" type="number" className={ inputClasses[1] } onBlur={ onBlurAge } />
+                { invalidMessages[1] !== "" && <div className="invalid-message">{ invalidMessages[1] }</div> }
+                <input placeholder="Email" className={ inputClasses[2] } onBlur={ onBlurEmail } />
+                { invalidMessages[2] !== "" && <div className="invalid-message">{ invalidMessages[2] }</div> }
+                <input type="password" placeholder="Password" className={ inputClasses[3] } onBlur={ onBlurPassword } />
+                { invalidMessages[3] !== "" && <div className="invalid-message">{ invalidMessages[3] }</div> }
+                <input type="password" placeholder="Repeat on password" className={ inputClasses[4] } onBlur={ onBlurPasswordRepeated } />
+                { invalidMessages[4] !== "" && <div className="invalid-message">{ invalidMessages[4] }</div> }
 
                 <div className="login-form__nav">
-                    <button type="submit" disabled={isFormInvalid()}>Submit</button>
-                    <div onClick={onClickLogin}>Login</div>
+                    <button type="submit" disabled={ isFormInvalid() }>Submit</button>
+                    <div onClick={ onClickLogin }>Login</div>
                 </div>
             </form>
         </div>
