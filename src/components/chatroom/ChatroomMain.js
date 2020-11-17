@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ChatroomContext } from '../../context/ChatRoomContext';
 import AddMessage from './AddMessage';
 import Message from './Message';
 
 const ChatroomMain = (props) => {
+    const { chatroomState } = useContext(ChatroomContext);
 
     return (
         <div className="chatroom__main">
             <div>
-                <h3>Room Name: {props.roomName}</h3>
-                {props.messages.map((message, i) => (
+                <h3>Room Name: { props.roomName }</h3>
+                { chatroomState.messages.map((message, i) => (
                     <Message
-                        key={message.id}
-                        message={message}
-                        userId={props.userId}
-                        deleteMessage={props.deleteMessage}
-                        index={i}
+                        key={ message.id }
+                        message={ message }
+                        userId={ props.userId }
+                        // deleteMessage={ props.deleteMessage }
+                        index={ i }
                     />
-                ))}
+                )) }
             </div>
-            <AddMessage addMessage={props.addMessage} />
+            <AddMessage addMessage={ props.addMessage } />
         </div>
     );
 };

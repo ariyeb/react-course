@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { ChatroomContext } from '../../context/ChatRoomContext';
 import PrivateMessage from './PrivateMessage';
 import SearchUsers from './SearchUsers';
 
 const ChatroomUsers = (props) => {
-    const [usersToDisplay, setUsersToDisplay] = useState([...props.users]);
+    const { chatroomState } = useContext(ChatroomContext);
+    const [usersToDisplay, setUsersToDisplay] = useState([...chatroomState.users]);
     const [privateMessageUser, setPrivateMessageUser] = useState(null);
 
     const searchUsers = (searchValue) => {
@@ -20,23 +22,23 @@ const ChatroomUsers = (props) => {
     return (
         <div className="chatroom__users">
             <h3>Users</h3>
-            <SearchUsers searchUsers={searchUsers} />
+            <SearchUsers searchUsers={ searchUsers } />
             {usersToDisplay.map((user) => (
                 <div
                     className="user"
-                    key={user.id}
-                    onClick={() => {
+                    key={ user.id }
+                    onClick={ () => {
                         setPrivateMessageUser(user);
-                    }}
+                    } }
                 >
-                    {user.username}
+                    {user.username }
                 </div>
-            ))}
+            )) }
             {
                 !!privateMessageUser &&
                 <PrivateMessage
-                    user={privateMessageUser}
-                    sendPrivateMessage={sendPrivateMessage}
+                    user={ privateMessageUser }
+                    sendPrivateMessage={ sendPrivateMessage }
                 />
             }
         </div>

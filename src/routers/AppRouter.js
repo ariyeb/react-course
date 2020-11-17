@@ -4,10 +4,10 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Footer from '../components/main/Footer';
 import Header from '../components/main/Header';
 import LoginPage from '../components/login/LoginPage';
-import Chatroom from '../components/chatroom/Chatroom';
 import Home from '../components/home/Home';
 import PageNotFound from '../components/main/PageNotfound';
 import Rooms from '../components/rooms/Rooms';
+import ChatroomLoader from '../components/chatroom/ChatroomLoader';
 
 const AppRouter = () => (
     <BrowserRouter>
@@ -19,7 +19,7 @@ const AppRouter = () => (
             <Route path="/home" component={ Home } />
             <Route path="/rooms" component={ Rooms } />
             <Route path="/login" component={ LoginPage } />
-            <Route path="/chatroom/:name" component={ Chatroom } />
+            <Route path="/chatroom/:name" component={ ChatroomLoader } />
             <Route path="*" component={ PageNotFound } />
         </Switch>
         <Footer />
