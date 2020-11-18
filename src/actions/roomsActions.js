@@ -3,7 +3,7 @@ export const addRoomAction = (room) => ({
     room
 });
 
-export const setRooms = (rooms) => ({
+export const setRoomsAction = (rooms) => ({
     type: "SET_ROOMS",
     rooms
 });

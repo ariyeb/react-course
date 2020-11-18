@@ -1,8 +1,10 @@
-import { nanoid } from 'nanoid';
-import React, { useReducer } from 'react';
+// import { nanoid } from 'nanoid';
+import React, { useEffect, useReducer } from 'react';
 import { Link } from 'react-router-dom';
-import { addRoomAction } from '../../actions/roomsActions';
-import roomsReducer, { initialRoomsState } from '../../reducers/roomsReducer';
+import { setRoomsAction } from '../../actions/roomsActions';
+import roomsReducer from '../../reducers/roomsReducer';
+import { getRoomsFromDB, postRoomInDB } from '../../server/db';
+// import Axios from 'axios';
 
 const Rooms = (props) => {
     // const [rooms, setRooms] = useState([
@@ -15,21 +17,45 @@ const Rooms = (props) => {
     //         id: nanoid()
     //     }
     // ]);
-    const [rooms, dispatcRooms] = useReducer(roomsReducer, initialRoomsState);
+    const [rooms, dispatcRooms] = useReducer(roomsReducer, []);
+
+    // useEffect(() => {
+    //     (async () => {
+    //         try {
+    //             for (let room of rooms) {
+    //                 const res = await Axios.post(process.env.REACT_APP_DB + "rooms.json", room);
+    //                 console.log(res.data);
+    //             }
+    //         } catch (e) {
+    //             console.log(e);
+    //         }
+    //     })();
+
+    // }, [rooms]);
+
+    useEffect(() => {
+        getRoomsFromDB().then((rooms) => {
+            dispatcRooms(setRoomsAction(rooms));
+        });
+    }, []);
 
     const onSubmitInputNewRoom = (event) => {
         event.preventDefault();
         const name = event.target.children[0].value.trim();
         if (name.length > 0) {
-            props.history.push("/chatroom/" + name);
+            // props.history.push("/chatroom/" + name);
             // setRooms(rooms.concat({
             //     name,
             //     id: nanoid()
             // }));
-            dispatcRooms(addRoomAction({
-                name,
-                id: nanoid()
-            }));
+            // dispatcRooms(addRoomAction({
+            //     name,
+            //     id: nanoid()
+            // }));
+
+            postRoomInDB(name).then((roomId) => {
+                console.log(roomId);
+            });
         }
 
     };
