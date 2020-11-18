@@ -10,6 +10,7 @@ import Rooms from '../components/rooms/Rooms';
 import ChatroomLoader from '../components/chatroom/ChatroomLoader';
 import LoginContextProvider from '../context/LoginContext';
 import PrivateRoute from './PrivateRoute';
+import LoginRoute from './LoginRoute';
 
 const AppRouter = () => (
     <BrowserRouter>
@@ -21,7 +22,7 @@ const AppRouter = () => (
                 </Route>
                 <Route path="/home" component={ Home } />
                 <PrivateRoute path="/rooms" component={ Rooms } />
-                <Route path="/login" component={ LoginPage } />
+                <LoginRoute path="/login" component={ LoginPage } />
                 <PrivateRoute path="/chatroom/:name" component={ ChatroomLoader } />
                 <Route path="*" component={ PageNotFound } />
             </Switch>
