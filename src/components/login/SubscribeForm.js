@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import validator from 'validator';
+import { loginAction } from '../../actions/loginActions';
+import { LoginContext } from '../../context/LoginContext';
 
 const SubscribeForm = (props) => {
+    const { dispatchUserData } = useContext(LoginContext);
+
     const [inputClasses, setInputClasses] = useState(["", "", "", "", ""]);
     const [invalidMessages, setInvalidMessages] = useState(["", "", "", "", ""]);
     const [validInputs, setValidInputs] = useState([false, false, false, false, false]);
@@ -131,6 +135,7 @@ const SubscribeForm = (props) => {
             email,
             password
         });
+        dispatchUserData(loginAction());
         history.push("/rooms");
     };
 

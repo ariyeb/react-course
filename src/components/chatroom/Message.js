@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { removeMessageAction } from '../../actions/chatroomActions';
 import { ChatroomContext } from '../../context/ChatRoomContext';
+import { LoginContext } from '../../context/LoginContext';
 
-const Message = ({ message, userId, index }) => {
-    const isMyMessage = message.user.id === userId;
+const Message = ({ message, index }) => {
+    const { userData } = useContext(LoginContext);
+    const isMyMessage = message.user.id === userData.user.id;
     const { chatroomDispatch } = useContext(ChatroomContext);
 
     const onClickDelete = () => {

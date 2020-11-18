@@ -5,6 +5,7 @@ import Message from './Message';
 
 const ChatroomMain = (props) => {
     const { chatroomState } = useContext(ChatroomContext);
+    // const contextValue = useContext(ChatroomContext);
 
     return (
         <div className="chatroom__main">
@@ -14,7 +15,7 @@ const ChatroomMain = (props) => {
                     <Message
                         key={ message.id }
                         message={ message }
-                        userId={ props.userId }
+                        //userId={ props.userId }
                         // deleteMessage={ props.deleteMessage }
                         index={ i }
                     />

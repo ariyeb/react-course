@@ -2,9 +2,11 @@ import { nanoid } from 'nanoid';
 import React, { useContext } from 'react';
 import { addMessageAction } from '../../actions/chatroomActions';
 import { ChatroomContext } from '../../context/ChatRoomContext';
+import { LoginContext } from '../../context/LoginContext';
 
-const AddMessage = (props) => {
+const AddMessage = () => {
     const { chatroomDispatch } = useContext(ChatroomContext);
+    const { userData } = useContext(LoginContext);
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -14,10 +16,7 @@ const AddMessage = (props) => {
             chatroomDispatch(addMessageAction({
                 message,
                 id: nanoid(),
-                user: {
-                    username: "ReactIsTheBest",
-                    id: "11"
-                }
+                user: userData.user
             }));
         }
         event.target.children[0].children[0].value = "";

@@ -1,10 +1,10 @@
 import React, { createContext, useReducer } from 'react';
-import chatroomrducer, { initialchatroomState } from '../reducers/chatroomReducer';
+import chatroomReducer, { initialchatroomState } from '../reducers/chatroomReducer';
 
 export const ChatroomContext = createContext();
 
 const ChatroomContextProvider = (props) => {
-    const [chatroomState, chatroomDispatch] = useReducer(chatroomrducer, initialchatroomState);
+    const [chatroomState, chatroomDispatch] = useReducer(chatroomReducer, initialchatroomState);
 
     return (
         <ChatroomContext.Provider value={ { chatroomState, chatroomDispatch } }>

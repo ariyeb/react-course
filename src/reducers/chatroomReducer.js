@@ -39,7 +39,7 @@ export const initialchatroomState = {
     ]
 };
 
-const chatroomrducer = (chatroomState, action) => {
+const chatroomReducer = (chatroomState, action) => {
     switch (action.type) {
         case "ADD_MESSAGE":
             return {
@@ -58,4 +58,4 @@ const chatroomrducer = (chatroomState, action) => {
     }
 };
 
-export default chatroomrducer;
+export default chatroomReducer;

@@ -5,10 +5,10 @@ import ChatroomUsers from './ChatroomUsers';
 
 const Chatroom = (props) => {
     const roomName = props.roomName;
-    const myUser = {
-        username: "ReactIsTheBest",
-        id: "11"
-    };
+    // const myUser = {
+    //     username: "ReactIsTheBest",
+    //     id: "11"
+    // };
     // const users = [
     //     {
     //         username: "Moshe",
@@ -61,8 +61,8 @@ const Chatroom = (props) => {
             />
             <ChatroomMain
                 roomName={ roomName }
-                // messages={ messages }
-                userId={ myUser.id }
+            // messages={ messages }
+            //userId={ myUser.id }
             // addMessage={ addMessage }
             // deleteMessage={ deleteMessage }
             />

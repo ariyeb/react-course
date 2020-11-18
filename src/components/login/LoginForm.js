@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { loginAction } from "../../actions/loginActions";
+import { LoginContext } from "../../context/LoginContext";
 
 const LoginForm = (props) => {
+	const { dispatchUserData } = useContext(LoginContext);
+
 	const [email, setEmail] = useState("");
 	// const emailState = useState("");
 	const [password, setPassword] = useState("");
@@ -35,6 +39,7 @@ const LoginForm = (props) => {
 	const onSubmitform = (event) => {
 		event.preventDefault();
 		console.log("login form:", email, password);
+		dispatchUserData(loginAction());
 		history.push("/rooms");
 	};
 

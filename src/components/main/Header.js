@@ -1,7 +1,17 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import { logoutAction } from "../../actions/loginActions";
+import { LoginContext } from "../../context/LoginContext";
 
 const Header = () => {
+	const { userData, dispatchUserData } = useContext(LoginContext);
+	const history = useHistory();
+
+	const onClickLogout = () => {
+		dispatchUserData(logoutAction());
+		history.push("/home");
+	};
+
 	return (
 		<div className="header">
 			<div className="header__nav">
@@ -10,7 +20,11 @@ const Header = () => {
 				</NavLink>
 				<div>
 					<NavLink to="/rooms" activeClassName="header__active-link">Rooms</NavLink>
-					<NavLink to="/login" activeClassName="header__active-link">Login</NavLink>
+					{
+						!!userData.user ?
+							<div className="header__logout-nav" onClick={ onClickLogout }>Logout</div> :
+							<NavLink to="/login" activeClassName="header__active-link">Login</NavLink>
+					}
 				</div>
 			</div>
 		</div>

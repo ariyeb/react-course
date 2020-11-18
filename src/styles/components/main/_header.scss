@@ -28,3 +28,9 @@
     color: $myYellow;
   }
 }
+
+.header__logout-nav {
+  @extend %a-nav;
+  display: inline-block;
+  cursor: pointer;
+}
