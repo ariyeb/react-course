@@ -9,6 +9,7 @@ import PageNotFound from '../components/main/PageNotfound';
 import Rooms from '../components/rooms/Rooms';
 import ChatroomLoader from '../components/chatroom/ChatroomLoader';
 import LoginContextProvider from '../context/LoginContext';
+import PrivateRoute from './PrivateRoute';
 
 const AppRouter = () => (
     <BrowserRouter>
@@ -19,9 +20,9 @@ const AppRouter = () => (
                     <Redirect to="/home" />
                 </Route>
                 <Route path="/home" component={ Home } />
-                <Route path="/rooms" component={ Rooms } />
+                <PrivateRoute path="/rooms" component={ Rooms } />
                 <Route path="/login" component={ LoginPage } />
-                <Route path="/chatroom/:name" component={ ChatroomLoader } />
+                <PrivateRoute path="/chatroom/:name" component={ ChatroomLoader } />
                 <Route path="*" component={ PageNotFound } />
             </Switch>
             <Footer />

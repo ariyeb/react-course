@@ -52,6 +52,7 @@ const Rooms = (props) => {
                     <input className="rooms__input-new" placeholder="new room" />
                     <button type="submit" className="rooms__button-new">Create</button>
                 </form>
+                <Link to="/login">Login example link</Link>
             </div>
         </div >
     );

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { loginAction } from "../../actions/loginActions";
 import { LoginContext } from "../../context/LoginContext";
@@ -11,6 +11,13 @@ const LoginForm = (props) => {
 	const [password, setPassword] = useState("");
 	const [isEmailinputValid, setIsEmailInputValid] = useState(true);
 	const [isPasswordInputValid, setIsPasswordInputValid] = useState(true);
+	const [errorMessage, setErrorMessage] = useState("");
+
+	useEffect(() => {
+		if (props.errorMessage !== "") {
+			setErrorMessage(props.errorMessage);
+		}
+	}, [props.errorMessage]);
 
 	const history = useHistory();
 
@@ -50,6 +57,7 @@ const LoginForm = (props) => {
 	return (
 		<div className="login-form">
 			<h3>Login</h3>
+			{errorMessage !== "" && <div className="error-message">{ errorMessage }</div> }
 			<form onSubmit={ onSubmitform }>
 				<input placeholder="Email" onBlur={ onBlurEmailInput } />
 				{ !isEmailinputValid && <div className="invalid-message">You must enter your email.</div> }
