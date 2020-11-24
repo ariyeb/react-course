@@ -27,6 +27,8 @@ export const loginToSite = async (email, password) => {
             user: { username: "ReactIsTheBest", id: res.data.localId }
         };
     } catch (err) {
-        console.log(err);
+        if (err.response && err.response.status === 400) {
+            throw new Error("Email or password are invalid.");
+        }
     }
 };

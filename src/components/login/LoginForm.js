@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { loginAction } from "../../actions/loginActions";
 import { LoginContext } from "../../context/LoginContext";
+import { saveUserOnCookie } from "../../cookies/cookies";
 import { loginToSite } from "../../server/auth";
 
 const LoginForm = (props) => {
@@ -52,7 +53,13 @@ const LoginForm = (props) => {
 		loginToSite(email, password).then(
 			(userData) => {
 				dispatchUserData(loginAction(userData));
+				saveUserOnCookie(userData);
 				history.push("/rooms");
+			},
+			(err) => {
+				if (err.message === "Email or password are invalid.") {
+					setErrorMessage(err.message);
+				}
 			}
 		);
 	};

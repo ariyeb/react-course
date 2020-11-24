@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import validator from 'validator';
 import { loginAction } from '../../actions/loginActions';
 import { LoginContext } from '../../context/LoginContext';
+import { saveUserOnCookie } from '../../cookies/cookies';
 import { subscribeToSite } from '../../server/auth';
 
 const SubscribeForm = (props) => {
@@ -141,6 +142,7 @@ const SubscribeForm = (props) => {
         subscribeToSite(email, password).then(
             (userData) => {
                 dispatchUserData(loginAction(userData));
+                saveUserOnCookie(userData);
                 history.push("/rooms");
             },
             (err) => {
