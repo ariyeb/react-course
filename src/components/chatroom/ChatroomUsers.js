@@ -13,7 +13,7 @@ const ChatroomUsers = (props) => {
     }, [chatroomState.users]);
 
     const searchUsers = (searchValue) => {
-        const users = [...props.users];
+        const users = [...chatroomState.users];
         setUsersToDisplay(searchValue === "" ?
             users :
             users.filter((user) => user.username.toLowerCase().includes(searchValue)));

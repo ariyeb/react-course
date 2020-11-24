@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { loginAction } from "../../actions/loginActions";
 import { LoginContext } from "../../context/LoginContext";
+import { loginToSite } from "../../server/auth";
 
 const LoginForm = (props) => {
 	const { dispatchUserData } = useContext(LoginContext);
@@ -46,8 +47,14 @@ const LoginForm = (props) => {
 	const onSubmitform = (event) => {
 		event.preventDefault();
 		console.log("login form:", email, password);
-		dispatchUserData(loginAction());
-		history.push("/rooms");
+		// dispatchUserData(loginAction());
+		// history.push("/rooms");
+		loginToSite(email, password).then(
+			(userData) => {
+				dispatchUserData(loginAction(userData));
+				history.push("/rooms");
+			}
+		);
 	};
 
 	const onClickSubscribe = () => {

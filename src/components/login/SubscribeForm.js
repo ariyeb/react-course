@@ -142,6 +142,13 @@ const SubscribeForm = (props) => {
             (userData) => {
                 dispatchUserData(loginAction(userData));
                 history.push("/rooms");
+            },
+            (err) => {
+                if (err.message === "EMAIL_EXISTS") {
+                    setInputClasses(["", "", "input-invalid", "", ""]);
+                    setInvalidMessages(["", "", "Mail exist.", "", ""]);
+                    setValidInputs([true, true, false, true, true]);
+                }
             }
         );
     };

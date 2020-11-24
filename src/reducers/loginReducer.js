@@ -3,7 +3,7 @@ export const userDataInitialState = { user: null, token: "" };
 const loginReducer = (userData, action) => {
     switch (action.type) {
         case "LOGIN":
-            console.log("loginreducer token:", action.token);
+            // console.log("loginreducer token:", action.token);
             return { user: { ...action.user }, token: action.token };
         case "LOGOUT":
             return { user: null, token: "" };
