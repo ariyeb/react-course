@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import validator from 'validator';
 import { loginAction } from '../../actions/loginActions';
 import { LoginContext } from '../../context/LoginContext';
+import { subscribeToSite } from '../../server/auth';
 
 const SubscribeForm = (props) => {
     const { dispatchUserData } = useContext(LoginContext);
@@ -135,8 +136,14 @@ const SubscribeForm = (props) => {
             email,
             password
         });
-        dispatchUserData(loginAction());
-        history.push("/rooms");
+        // dispatchUserData(loginAction());
+        // history.push("/rooms");
+        subscribeToSite(email, password).then(
+            (userData) => {
+                dispatchUserData(loginAction(userData));
+                history.push("/rooms");
+            }
+        );
     };
 
     const onClickLogin = () => {

@@ -2,9 +2,9 @@ import Axios from 'axios';
 
 const DB_URL = process.env.REACT_APP_DB;
 
-export const getRoomsFromDB = async () => {
+export const getRoomsFromDB = async (token) => {
     try {
-        const res = await Axios.get(DB_URL + "rooms.json");
+        const res = await Axios.get(DB_URL + "rooms.json", { params: { auth: token } });
         const rooms = [];
         for (let id in res.data) {
             rooms.push({
@@ -19,18 +19,24 @@ export const getRoomsFromDB = async () => {
     }
 };
 
-export const postRoomInDB = async (name) => {
+export const postRoomInDB = async (name, token) => {
     try {
-        const res = await Axios.post(DB_URL + "rooms.json", { name, users: [] });
+        const res = await Axios.post(
+            DB_URL + "rooms.json",
+            { name, users: [] },
+            { params: { auth: token } }
+        );
         return res.data.name;
     } catch (err) {
         console.log(err);
     }
 };
 
-export const getRoomData = async (roomId) => {
+export const getRoomData = async (roomId, token) => {
     try {
-        const res = await Axios.get(DB_URL + "rooms/" + roomId + ".json");
+        const res = await Axios.get(
+            DB_URL + "rooms/" + roomId + ".json",
+            { params: { auth: token } });
         if (!res.data) {
             throw new Error("Room not found");
         }
