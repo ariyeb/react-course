@@ -27,3 +27,19 @@ export const postRoomInDB = async (name) => {
         console.log(err);
     }
 };
+
+export const getRoomData = async (roomId) => {
+    try {
+        const res = await Axios.get(DB_URL + "rooms/" + roomId + ".json");
+        if (!res.data) {
+            throw new Error("Room not found");
+        }
+
+        return ({
+            name: res.data.name,
+            users: res.data.users || []
+        });
+    } catch (err) {
+        throw err;
+    }
+};

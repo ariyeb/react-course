@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ChatroomContext } from '../../context/ChatRoomContext';
 import PrivateMessage from './PrivateMessage';
 import SearchUsers from './SearchUsers';
@@ -7,6 +7,10 @@ const ChatroomUsers = (props) => {
     const { chatroomState } = useContext(ChatroomContext);
     const [usersToDisplay, setUsersToDisplay] = useState([...chatroomState.users]);
     const [privateMessageUser, setPrivateMessageUser] = useState(null);
+
+    useEffect(() => {
+        setUsersToDisplay([...chatroomState.users]);
+    }, [chatroomState.users]);
 
     const searchUsers = (searchValue) => {
         const users = [...props.users];

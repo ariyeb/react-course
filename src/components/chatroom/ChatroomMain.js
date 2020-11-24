@@ -29,7 +29,7 @@ const ChatroomMain = (props) => {
     return (
         <div className="chatroom__main">
             <div>
-                <h3>Room Name: { props.roomName }</h3>
+                <h3>Room Name: { chatroomState.name }</h3>
                 { chatroomState.messages.map((message, i) => (
                     <Message
                         key={ message.id }

@@ -3,11 +3,11 @@ import ChatroomContextProvider from '../../context/ChatRoomContext';
 import Chatroom from './Chatroom';
 
 const ChatroomLoader = (props) => {
-    const roomName = props.match.params.name;
+    const roomId = props.match.params.id;
 
     return (
-        <ChatroomContextProvider>
-            <Chatroom roomName={ roomName } />
+        <ChatroomContextProvider roomId={ roomId }>
+            <Chatroom />
         </ChatroomContextProvider>
     );
 };

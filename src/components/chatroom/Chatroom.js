@@ -1,10 +1,12 @@
 // import { nanoid } from 'nanoid';
-import React from 'react';
+import React, { useContext } from 'react';
+import { ChatroomContext } from '../../context/ChatRoomContext';
 import ChatroomMain from './ChatroomMain';
 import ChatroomUsers from './ChatroomUsers';
+import Loader from '../main/Loader';
 
 const Chatroom = (props) => {
-    const roomName = props.roomName;
+    // const roomName = props.roomName;
     // const myUser = {
     //     username: "ReactIsTheBest",
     //     id: "11"
@@ -54,18 +56,26 @@ const Chatroom = (props) => {
     //     setMessages(newMessages);
     // };
 
+    const { chatroomState } = useContext(ChatroomContext);
+
     return (
-        <div className="chatroom">
-            <ChatroomUsers
-            // users={ users }
-            />
-            <ChatroomMain
-                roomName={ roomName }
-            // messages={ messages }
-            //userId={ myUser.id }
-            // addMessage={ addMessage }
-            // deleteMessage={ deleteMessage }
-            />
+        <div className="chatroom-container">
+            {
+                chatroomState.isRoomExist ?
+                    <div className="chatroom">
+                        <ChatroomUsers
+                        // users={ users }
+                        />
+                        <ChatroomMain
+                        // roomName={ roomName }
+                        // messages={ messages }
+                        //userId={ myUser.id }
+                        // addMessage={ addMessage }
+                        // deleteMessage={ deleteMessage }
+                        />
+                    </div> :
+                    <Loader />
+            }
         </div>
     );
 };

@@ -1,9 +1,10 @@
 // import { nanoid } from 'nanoid';
-import React, { useEffect, useReducer } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useReducer, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { setRoomsAction } from '../../actions/roomsActions';
 import roomsReducer from '../../reducers/roomsReducer';
 import { getRoomsFromDB, postRoomInDB } from '../../server/db';
+import Loader from '../main/Loader';
 // import Axios from 'axios';
 
 const Rooms = (props) => {
@@ -18,6 +19,8 @@ const Rooms = (props) => {
     //     }
     // ]);
     const [rooms, dispatcRooms] = useReducer(roomsReducer, []);
+    const [isRoomLoaded, setIsRoomLoaded] = useState(false);
+    const history = useHistory();
 
     // useEffect(() => {
     //     (async () => {
@@ -36,6 +39,7 @@ const Rooms = (props) => {
     useEffect(() => {
         getRoomsFromDB().then((rooms) => {
             dispatcRooms(setRoomsAction(rooms));
+            setIsRoomLoaded(true);
         });
     }, []);
 
@@ -54,7 +58,7 @@ const Rooms = (props) => {
             // }));
 
             postRoomInDB(name).then((roomId) => {
-                console.log(roomId);
+                history.push("/chatroom/" + roomId);
             });
         }
 
@@ -67,7 +71,7 @@ const Rooms = (props) => {
                 {
                     rooms.map((room) => (
                         <div className="room" key={ room.id }>
-                            <Link to={ "/chatroom/" + room.name }>{ room.name }</Link>
+                            <Link to={ "/chatroom/" + room.id }>{ room.name }</Link>
                         </div>
                     ))
                 }
@@ -80,6 +84,7 @@ const Rooms = (props) => {
                 </form>
                 <Link to="/login">Login example link</Link>
             </div>
+            {!isRoomLoaded && <Loader /> }
         </div >
     );
 };

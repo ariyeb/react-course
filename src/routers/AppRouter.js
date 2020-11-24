@@ -23,7 +23,7 @@ const AppRouter = () => (
                 <Route path="/home" component={ Home } />
                 <PrivateRoute path="/rooms" component={ Rooms } />
                 <LoginRoute path="/login" component={ LoginPage } />
-                <PrivateRoute path="/chatroom/:name" component={ ChatroomLoader } />
+                <PrivateRoute path="/chatroom/:id" component={ ChatroomLoader } />
                 <Route path="*" component={ PageNotFound } />
             </Switch>
             <Footer />
